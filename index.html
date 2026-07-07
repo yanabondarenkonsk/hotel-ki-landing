@@ -36,7 +36,7 @@ body {
   color: var(--text);
   background: radial-gradient(circle at top left, #e8f2d8 0, #f7faf4 40%, #fdfdfd 100%);
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.8;
   overflow-x: hidden;
 }
 
@@ -71,12 +71,12 @@ body {
   font-family: var(--font-display);
   font-size: clamp(26px, 4vw, 38px);
   font-weight: 700; color: var(--navy);
-  line-height: 1.2; margin-bottom: 16px;
-  letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 16px;
+  letter-spacing: -0.04em;
 }
 .section-sub {
   font-size: 18px; color: var(--muted);
-  max-width: 580px; line-height: 1.65;
+  max-width: 580px; line-height: 1.75;
 }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -141,13 +141,13 @@ nav {
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 46px);
+  font-size: clamp(30px, 5vw, 56px);
   font-weight: 700; color: #1e2a14;
-  line-height: 1.15; margin-bottom: 20px;
-  letter-spacing: -0.02em;
+  line-height: 1.08; margin-bottom: 22px;
+  letter-spacing: -0.04em;
 }
 .hero h1 em { color: #447911; font-style: normal; }
-.hero-lead { font-size: 18px; color: #5a6650; margin-bottom: 32px; line-height: 1.65; }
+.hero-lead { font-size: 19px; color: #5a6650; margin-bottom: 32px; line-height: 1.7; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .btn-hero {
   display: inline-flex; align-items: center; gap: 8px;
@@ -171,8 +171,9 @@ nav {
   border-top: 1px solid rgba(85,179,0,.2);
 }
 .hero-stat-num {
-  font-family: var(--font-display); font-size: 32px;
+  font-family: var(--font-display); font-size: 42px;
   font-weight: 700; color: #447911;
+  letter-spacing: -0.04em; line-height: 1;
 }
 .hero-stat-label { font-size: 13px; color: #7a8c72; line-height: 1.4; }
 
@@ -425,6 +426,39 @@ footer { background: linear-gradient(to bottom, #f7faf4, #f0f5ea); color: #5a665
 .delay-2 { animation-delay: .2s; }
 .delay-3 { animation-delay: .3s; }
 .delay-4 { animation-delay: .4s; }
+
+/* ── OTA TICKER (signature element) ── */
+.hero-ticker {
+  margin-top: 28px;
+  padding: 18px 24px;
+  background: rgba(212, 76, 58, 0.05);
+  border: 1.5px solid rgba(212, 76, 58, 0.18);
+  border-radius: 18px;
+  display: inline-block;
+  max-width: 360px;
+}
+.hero-ticker__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.hero-ticker__amount {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--coral);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.hero-ticker__note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  opacity: 0.8;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
@@ -849,6 +883,28 @@ document.querySelectorAll('.room-card').forEach(card => {
     card.classList.add('active');
   });
 });
+// OTA losses ticker
+(function() {
+  var ratePerSec = 174;
+  var startTime = Date.now();
+  var ticker = document.createElement('div');
+  ticker.className = 'hero-ticker';
+  ticker.innerHTML =
+    '<div class="hero-ticker__label">Пока вы читаете, OTA забрали у отельеров России</div>' +
+    '<div class="hero-ticker__amount"><span id="ota-counter">0</span> ₽</div>' +
+    '<div class="hero-ticker__note">~174 ₽/сек · оценка на основе средней комиссии 15–20%</div>';
+  var stats = document.querySelector('.hero-stats');
+  if (stats) stats.parentNode.insertBefore(ticker, stats.nextSibling);
+  function tick() {
+    var elapsed = (Date.now() - startTime) / 1000;
+    var amount = Math.floor(elapsed * ratePerSec);
+    var el = document.getElementById('ota-counter');
+    if (el) el.textContent = amount.toLocaleString('ru-RU');
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PMS система управления номерным фондом</title>
+    <title>Лендинг для гостиницы — сайт + PMS | Hotel-KI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,13 +12,13 @@
     />
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/landing.css" />
   </head>
   <body>
     <div class="page">
-      <!-- Header -->
       <header class="header">
         <div class="container header__inner">
-          <div class="header__logo">
+          <a href="./index.html" class="header__logo">
             <img
               src="./assets/img/logo_hotelki.svg"
               alt="Hotel KI"
@@ -28,14 +28,14 @@
               <span class="logo-text__title">Hotel KI</span>
               <span class="logo-text__subtitle">PMS для отелей и апартаментов</span>
             </div>
-          </div>
+          </a>
 
           <nav class="header__nav">
-            <a href="#features" class="header__link">Преимущества</a>
-            <a href="#functional" class="header__link">Функционал</a>
-            <a href="#about" class="header__link">О нас</a>
-            <a href="#faq" class="header__link">FAQ</a>
-            <a href="#contacts" class="header__link">Контакты</a>
+            <a href="./index.html" class="header__link">Главная</a>
+            <a href="#benefits" class="header__link">Преимущества</a>
+            <a href="#how-it-works" class="header__link">Как это работает</a>
+            <a href="#demo" class="header__link">Заявка</a>
+            <a href="./index.html#contacts" class="header__link">Контакты</a>
           </nav>
 
           <div class="header__right">
@@ -43,288 +43,264 @@
               <span class="header__phone-label">Отдел продаж</span>
               <a href="tel:+79137842018" class="header__phone-number">+7 913 784‑20‑18</a>
             </div>
-            <a href="#demo" class="button button--primary header__cta">Демо-доступ</a>
+            <a href="#demo" class="button button--primary header__cta">Оставить заявку</a>
           </div>
         </div>
       </header>
 
       <main>
         <!-- Hero -->
-        <section class="hero" id="top">
+        <section class="hero hero--full" id="top">
           <div class="container hero__inner">
             <div class="hero__content">
-              <div class="hero__label">Система управления номерным фондом</div>
+              <div class="hero__label">Лендинг для вашей гостиницы</div>
               <h1 class="hero__title">
-                Удобная PMS‑система
-                <span class="hero__title-accent">для отелей любого формата</span>
+                Создадим сайт для вашей гостиницы
+                <span class="hero__title-accent">и подключим систему управления бронированиями</span>
               </h1>
               <p class="hero__subtitle">
-                Управляйте бронированиями, ценами и загрузкой из одной облачной системы.
-                Больше прямых продаж, меньше ручной рутины и овербукинга.
+                Если у вашей гостиницы нет сайта — это не проблема.
+                С системой Hotel-KI вы получаете не только удобную PMS для управления номерным фондом,
+                но и готовый брендовый сайт гостиницы, через который гости смогут бронировать номера напрямую.
+              </p>
+              <p class="hero__subtitle hero__subtitle--accent">
+                Без разработки, без долгих согласований и без больших расходов.
               </p>
 
               <div class="hero__actions">
-                <a href="#demo" class="button button--primary">Получить демо</a>
-                <a href="#contacts" class="button button--ghost">Запросить консультацию</a>
+                <a href="#demo" class="button button--primary">Оставить заявку</a>
+                <a href="#benefits" class="button button--ghost">Узнать подробнее</a>
               </div>
 
-              <div class="hero__meta">
-                <div class="hero__meta-item">24/7 доступ из любой точки мира</div>
-                <div class="hero__meta-separator"></div>
-                <div class="hero__meta-item hero__meta-item--accent">Создано для отелей, апарт‑отелей и коттеджей</div>
-              </div>
-            </div>
-
-            <div class="hero__visual">
-              <div class="hero-card">
-                <div class="hero-card__header">
-                  <div class="hero-card__title">Шахматка заселения</div>
-                  <div class="hero-card__badge">98% загрузка сегодня</div>
-                </div>
-                <div class="hero-card__grid">
-                  <div class="hero-card__row hero-card__row--head">
-                    <span>Категория</span>
-                    <span>Заезд</span>
-                    <span>Гость</span>
-                    <span>Статус</span>
-                    <span>Оплата</span>
-                    <span>Сумма</span>
-                  </div>
-                  <div class="hero-card__row">
-                    <span>Стандарт</span>
-                    <span>12–14 мая</span>
-                    <span>Иванов И.</span>
-                    <span class="badge badge--green">Заселен</span>
-                    <span class="badge badge--grey">Онлайн</span>
-                    <span>18 400 ₽</span>
-                  </div>
-                  <div class="hero-card__row">
-                    <span>Делюкс</span>
-                    <span>15–18 мая</span>
-                    <span>Петрова А.</span>
-                    <span class="badge badge--yellow">Ожидается</span>
-                    <span class="badge badge--grey">На месте</span>
-                    <span>25 900 ₽</span>
-                  </div>
-                  <div class="hero-card__row">
-                    <span>Коттедж</span>
-                    <span>20–25 мая</span>
-                    <span>ООО «Турист»</span>
-                    <span class="badge badge--blue">Бронь партнёра</span>
-                    <span class="badge badge--grey">Безнал</span>
-                    <span>72 000 ₽</span>
-                  </div>
-                </div>
-              </div>
-              <div class="hero__hint">
-                Скрин‑интерфейс условный, можно заменить на реальные кадры вашей системы.
+              <div class="hero-benefits">
+                <h3 class="hero-benefits__title">Что вы получаете:</h3>
+                <ul class="hero-benefits__list">
+                  <li>готовый сайт гостиницы</li>
+                  <li>онлайн-бронирование номеров</li>
+                  <li>автоматическое отображение свободных дат</li>
+                  <li>интеграцию с системой управления отелем</li>
+                  <li>удобную шахматку бронирований</li>
+                  <li>возможность принимать прямые брони без посредников</li>
+                </ul>
+                <div class="hero-benefits__badge">Экономия на разработке сайта — от 100 000 ₽</div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Advantages -->
-        <section class="section" id="features">
+        <!-- Почему нужен сайт -->
+        <section class="section" id="why-site">
           <div class="container">
             <div class="section__head">
-              <h2 class="section__title">Основные преимущества</h2>
+              <h2 class="section__title">Почему гостинице нужен собственный сайт</h2>
               <p class="section__subtitle">
-                Всё, что нужно современному отелю: рост прямых продаж и прозрачное управление.
+                Многие небольшие гостиницы и базы отдыха работают только через: Avito, Booking-сервисы,
+                социальные сети, мессенджеры. Но у такого подхода есть серьёзные минусы:
               </p>
             </div>
+            <div class="landing-grid landing-grid--2">
+              <div class="card card--negative">
+                <h3 class="card__title">Минусы работы без сайта</h3>
+                <ul class="card__list">
+                  <li>высокая комиссия агрегаторов</li>
+                  <li>потеря прямых клиентов</li>
+                  <li>путаница с бронями</li>
+                  <li>сложность управления загрузкой номеров</li>
+                </ul>
+              </div>
+              <div class="card card--positive">
+                <h3 class="card__title">Собственный сайт позволяет:</h3>
+                <ul class="card__list">
+                  <li>принимать прямые бронирования без комиссии</li>
+                  <li>управлять загрузкой номеров</li>
+                  <li>формировать бренд гостиницы</li>
+                  <li>увеличивать прибыль</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- Решение от Hotel-KI -->
+        <section class="section section--soft" id="solution">
+          <div class="container">
+            <div class="section__head">
+              <h2 class="section__title">Решение от Hotel-KI</h2>
+              <p class="section__subtitle">
+                Мы сделали удобное решение для небольших гостиниц и баз отдыха.
+                Вместе с системой управления отелем вы получаете готовый сайт, который уже интегрирован с PMS.
+              </p>
+            </div>
+            <div class="solution-flow">
+              <p class="solution-flow__text">
+                <strong>Гость выбирает номер на сайте</strong> →
+                <strong>система автоматически проверяет доступность</strong> →
+                <strong>бронь сразу попадает в шахматку администратора.</strong>
+              </p>
+              <p class="solution-flow__note">Без ручной работы.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Что входит в сайт -->
+        <section class="section" id="what-included">
+          <div class="container">
+            <div class="section__head">
+              <h2 class="section__title">Что входит в сайт гостиницы</h2>
+            </div>
+
+            <div class="landing-cards">
+              <article class="card card--icon">
+                <h3 class="card__title">Структура сайта</h3>
+                <p class="card__text">Полноценный сайт гостиницы со всеми необходимыми разделами:</p>
+                <ul class="card__list card__list--compact">
+                  <li>главная страница</li>
+                  <li>описание гостиницы</li>
+                  <li>номера и цены</li>
+                  <li>фотографии номеров</li>
+                  <li>информация об услугах</li>
+                  <li>карта и контакты</li>
+                  <li>форма онлайн-бронирования</li>
+                </ul>
+              </article>
+
+              <article class="card card--icon">
+                <h3 class="card__title">Онлайн бронирование</h3>
+                <p class="card__text">Гости смогут:</p>
+                <ul class="card__list card__list--compact">
+                  <li>выбрать даты проживания</li>
+                  <li>посмотреть свободные номера</li>
+                  <li>забронировать номер онлайн</li>
+                </ul>
+                <p class="card__text">Все бронирования автоматически появляются в системе управления отелем.</p>
+              </article>
+
+              <article class="card card--icon">
+                <h3 class="card__title">Интеграция с PMS</h3>
+                <p class="card__text">Сайт полностью связан с системой Hotel-KI:</p>
+                <ul class="card__list card__list--compact">
+                  <li>автоматически обновлять доступность номеров</li>
+                  <li>избегать овербукинга</li>
+                  <li>видеть загрузку отеля в шахматке</li>
+                  <li>управлять бронями из одного интерфейса</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Для каких объектов -->
+        <section class="section section--soft" id="for-whom">
+          <div class="container">
+            <div class="section__head">
+              <h2 class="section__title">Для каких объектов подходит решение</h2>
+              <p class="section__subtitle">
+                Сайт + PMS идеально подходит для:
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">небольшие гостиницы</span>
+              <span class="tag">базы отдыха</span>
+              <span class="tag">гостевые дома</span>
+              <span class="tag">мини-отели</span>
+              <span class="tag">апарт-отели</span>
+              <span class="tag">эко-отели</span>
+              <span class="tag">глэмпинги</span>
+            </div>
+            <p class="section__subtitle" style="margin-top: 20px;">
+              Особенно если у вас: до 50 номеров, нет собственного сайта, бронирования приходят из разных источников.
+            </p>
+          </div>
+        </section>
+
+        <!-- Почему выгоднее -->
+        <section class="section" id="benefits">
+          <div class="container">
+            <div class="section__head">
+              <h2 class="section__title">Почему это выгоднее обычной разработки сайта</h2>
+              <p class="section__subtitle">
+                Разработка сайта для гостиницы обычно стоит от 100 000 до 300 000 ₽ — и при этом сайт не связан
+                с системой управления отелем. В решении Hotel-KI вы получаете всё в одном продукте:
+              </p>
+            </div>
+            <div class="benefits-pack">
+              <span class="benefits-pack__item">сайт гостиницы</span>
+              <span class="benefits-pack__item">систему управления номерным фондом</span>
+              <span class="benefits-pack__item">шахматку бронирований</span>
+              <span class="benefits-pack__item">онлайн бронирование</span>
+            </div>
+
+            <div class="section__head" style="margin-top: 40px;">
+              <h2 class="section__title">Основные преимущества</h2>
+            </div>
             <div class="cards cards--grid-4">
               <article class="card">
-                <h3 class="card__title">Прямые продажи</h3>
-                <p class="card__text">
-                  Модуль бронирования на сайте отеля, без комиссий OTA. Гости видят актуальные цены и свободные номера.
-                </p>
+                <h3 class="card__title">Быстрый запуск</h3>
+                <p class="card__text">Сайт можно запустить за несколько дней.</p>
               </article>
               <article class="card">
-                <h3 class="card__title">Удобство управления</h3>
-                <p class="card__text">
-                  Вся информация по заселению, оплатам и бронированиям в одном окне. Сокращение ошибок и нагрузки на ресепшен.
-                </p>
+                <h3 class="card__title">Экономия бюджета</h3>
+                <p class="card__text">Не нужно заказывать отдельную разработку сайта.</p>
               </article>
               <article class="card">
-                <h3 class="card__title">Лендинг для отелей</h3>
-                <p class="card__text">
-                  Готовая страница отеля с модулем поиска и бронирования. Запускается без участия программистов.
-                </p>
+                <h3 class="card__title">Прямые бронирования</h3>
+                <p class="card__text">Гости бронируют номера напрямую через ваш сайт.</p>
               </article>
               <article class="card">
-                <h3 class="card__title">Вложенные объекты</h3>
-                <p class="card__text">
-                  Коттеджи, корпуса, отдельные номера — система поддерживает сложные структуры размещения и аренды целиком.
-                </p>
+                <h3 class="card__title">Управление номерным фондом</h3>
+                <p class="card__text">Все бронирования автоматически отображаются в шахматке.</p>
+              </article>
+              <article class="card card--wide">
+                <h3 class="card__title">Простота работы</h3>
+                <p class="card__text">Администратор работает в одной системе.</p>
               </article>
             </div>
           </div>
         </section>
 
-        <!-- Functional -->
-        <section class="section section--soft" id="functional">
+        <!-- Как это работает -->
+        <section class="section section--soft" id="how-it-works">
           <div class="container">
             <div class="section__head">
-              <h2 class="section__title">Функционал системы</h2>
-              <p class="section__subtitle">
-                Контроль загрузки, цен и платежей в реальном времени — для управляющих и собственников.
-              </p>
+              <h2 class="section__title">Как это работает</h2>
             </div>
-
-            <div class="cards cards--grid-4 cards--icons">
-              <article class="card card--icon">
-                <div class="card__icon">₽</div>
-                <h3 class="card__title">Цены</h3>
-                <p class="card__text">
-                  Гибкие тарифы, сезоны, спецпредложения. Массовое изменение цен по категориям и датам.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">📅</div>
-                <h3 class="card__title">Бронирования</h3>
-                <p class="card__text">
-                  Шахматка, статусы оплат и заездов, защита от овербукинга, история изменений.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">🤝</div>
-                <h3 class="card__title">Контрагенты</h3>
-                <p class="card__text">
-                  Корпоративные клиенты, тур‑агентства, партнёры. Учёт квот и условий по каждому.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">🌐</div>
-                <h3 class="card__title">Online‑страница</h3>
-                <p class="card__text">
-                  Мини‑сайт отеля с описаниями и фото. Гости сразу видят доступные номера и могут забронировать.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">📄</div>
-                <h3 class="card__title">Бухгалтерские документы</h3>
-                <p class="card__text">
-                  Акты, счета, счёт‑фактуры и чеки по онлайн‑оплатам формируются прямо из системы.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">🛒</div>
-                <h3 class="card__title">Модуль прямых продаж</h3>
-                <p class="card__text">
-                  Виджет, который встраивается на ваш сайт или лендинг и принимает бронирования 24/7.
-                </p>
-              </article>
-              <article class="card card--icon">
-                <div class="card__icon">📊</div>
-                <h3 class="card__title">Аналитика</h3>
-                <p class="card__text">
-                  Загрузка, средняя цена, выручка, длительность проживания и другие показатели для управленческих решений.
-                </p>
-              </article>
-            </div>
+            <ol class="steps">
+              <li class="step">Мы подключаем систему Hotel-KI</li>
+              <li class="step">Создаём сайт вашей гостиницы</li>
+              <li class="step">Добавляем номера, фотографии и цены</li>
+              <li class="step">Подключаем онлайн-бронирование</li>
+              <li class="step">Вы начинаете принимать прямые брони</li>
+            </ol>
           </div>
         </section>
 
-        <!-- About -->
-        <section class="section" id="about">
-          <div class="container about">
-            <div class="about__text">
-              <h2 class="section__title">Создано в Сибири — работает для всей России</h2>
-              <p class="section__subtitle">
-                Hotel KI рождена в Новосибирском Академгородке, где научная экспертиза встречается с IT‑проектами
-                федерального масштаба. Наша команда уже создавала сервисы, которыми пользуются миллионы людей.
-              </p>
-              <p class="about__extra">
-                Мы знаем, как работать с высокой нагрузкой, безопасностью данных и сложными бизнес‑процессами
-                в туризме и гостиничном секторе.
-              </p>
-              <div class="about__trust">
-                <div class="about__badge">10+ лет в разработке B2C и B2B‑проектов</div>
-                <div class="about__badge">Инфраструктура в РФ</div>
-              </div>
-            </div>
-            <div class="about__side">
-              <div class="about-card">
-                <div class="about-card__label">Команда</div>
-                <div class="about-card__metric">
-                  <span class="about-card__metric-value">15+</span>
-                  <span class="about-card__metric-caption">специалистов в продукте и поддержке</span>
-                </div>
-                <div class="about-card__metric">
-                  <span class="about-card__metric-value">99.5%</span>
-                  <span class="about-card__metric-caption">uptime сервиса за прошлый год</span>
-                </div>
-                <div class="about-card__note">
-                  Мы готовы помочь с миграцией данных, обучением персонала и тестовым периодом без рисков.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section section--soft" id="faq">
+        <!-- Для кого -->
+        <section class="section" id="target">
           <div class="container">
             <div class="section__head">
-              <h2 class="section__title">Часто задаваемые вопросы</h2>
+              <h2 class="section__title">Для кого мы создавали это решение</h2>
               <p class="section__subtitle">
-                Если не нашли ответ — оставьте заявку на консультацию, и мы подробно расскажем о системе.
+                Мы разрабатывали систему специально для владельцев небольших гостиниц, которые:
               </p>
             </div>
-
-            <div class="faq">
-              <div class="faq-item">
-                <button class="faq-item__header" type="button">
-                  <span class="faq-item__question">Как проходит подключение отеля к системе?</span>
-                  <span class="faq-item__icon"></span>
-                </button>
-                <div class="faq-item__body">
-                  <p>
-                    Мы помогаем собрать данные по номерному фонду, тарифам и бронированиям, настраиваем систему
-                    под ваши процессы и обучаем команду. Обычно базовый запуск занимает от 3 до 7 рабочих дней.
-                  </p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-item__header" type="button">
-                  <span class="faq-item__question">Нужен ли отдельный сервер или установка ПО?</span>
-                  <span class="faq-item__icon"></span>
-                </button>
-                <div class="faq-item__body">
-                  <p>
-                    Нет. Hotel KI — облачный сервис. Достаточно браузера и доступа в Интернет. Обновления
-                    и резервное копирование происходят автоматически.
-                  </p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-item__header" type="button">
-                  <span class="faq-item__question">Можно ли работать из разных городов и устройств?</span>
-                  <span class="faq-item__icon"></span>
-                </button>
-                <div class="faq-item__body">
-                  <p>
-                    Да. Вы можете зайти в систему с любого устройства: рабочего места администратора,
-                    ноутбука управляющего или планшета собственника. Доступ разграничивается по ролям.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <ul class="target-list">
+              <li>не хотят тратить большие бюджеты на разработку сайта</li>
+              <li>хотят управлять бронированиями в одной системе</li>
+              <li>хотят получать больше прямых клиентов</li>
+            </ul>
           </div>
         </section>
 
-        <!-- Demo CTA -->
+        <!-- CTA -->
         <section class="section section--highlight" id="demo">
           <div class="container demo">
             <div class="demo__text">
-              <h2 class="section__title">Испытайте сервис Hotel KI бесплатно</h2>
+              <h2 class="section__title">Начните принимать бронирования через свой сайт</h2>
               <p class="section__subtitle">
-                Оставьте контакты — мы покажем систему на живом примере вашего отеля и предложим сценарии роста
-                прямых продаж.
+                Подключите Hotel-KI и получите: сайт гостиницы, систему управления номерным фондом,
+                удобную шахматку бронирований, онлайн бронирование.
               </p>
+              <p class="section__subtitle">Оставьте заявку — мы покажем, как работает система.</p>
             </div>
             <form class="demo__form">
               <div class="form-grid">
@@ -333,16 +309,20 @@
                   <input class="field__input" type="text" name="name" placeholder="Как к вам обращаться?" />
                 </label>
                 <label class="field">
-                  <span class="field__label">Телефон или e‑mail</span>
-                  <input class="field__input" type="text" name="contact" placeholder="+7 999 000‑00‑00" />
+                  <span class="field__label">Телефон*</span>
+                  <input class="field__input" type="tel" name="phone" placeholder="+7 999 000‑00‑00" required />
                 </label>
-                <label class="field form-grid__full">
-                  <span class="field__label">Отель / объект размещения</span>
+                <label class="field">
+                  <span class="field__label">E‑mail*</span>
+                  <input class="field__input" type="email" name="email" placeholder="email@example.com" required />
+                </label>
+                <label class="field">
+                  <span class="field__label">Название отеля / объекта</span>
                   <input class="field__input" type="text" name="hotel" placeholder="Название и город" />
                 </label>
               </div>
               <button class="button button--primary button--wide" type="submit">
-                Отправить заявку на демо
+                Оставить заявку
               </button>
               <p class="demo__note">
                 Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и условиями оферты.
@@ -352,7 +332,6 @@
         </section>
       </main>
 
-      <!-- Footer / Contacts -->
       <footer class="footer" id="contacts">
         <div class="container footer__inner">
           <div class="footer__col">
@@ -394,4 +373,3 @@
     <script src="./js/main.js"></script>
   </body>
 </html>
-

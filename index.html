@@ -1,375 +1,855 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Лендинг для гостиницы — сайт + PMS | Hotel-KI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/landing.css" />
-  </head>
-  <body>
-    <div class="page">
-      <header class="header">
-        <div class="container header__inner">
-          <a href="./index.html" class="header__logo">
-            <img
-              src="./assets/img/logo_hotelki.svg"
-              alt="Hotel KI"
-              class="header__logo-img"
-            />
-            <div class="logo-text">
-              <span class="logo-text__title">Hotel KI</span>
-              <span class="logo-text__subtitle">PMS для отелей и апартаментов</span>
-            </div>
-          </a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Модуль бронирования для сайта гостиницы, турбазы, гостевого дома — Hotel KI</title>
+<meta name="description" content="Установите модуль онлайн-бронирования на сайт за 1 день. Гости бронируют сами, вы получаете оплату без комиссии OTA. Для турбаз, гостевых домов, мини-отелей.">
+<meta name="keywords" content="модуль бронирования для сайта, онлайн бронирование для гостиницы, виджет бронирования, модуль поиска и бронирования, система бронирования для турбазы, модуль бронирования для гостевого дома, кнопка забронировать на сайт отеля, форма бронирования номеров, booking engine для отеля, прямые продажи гостиницы без OTA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0F2240;
+  --teal: #0E8A7A;
+  --teal-light: #14A896;
+  --teal-bg: #E8F7F5;
+  --amber: #E8820C;
+  --amber-bg: #FEF3E2;
+  --coral: #D44C3A;
+  --coral-bg: #FEF0EE;
+  --slate: #4A5568;
+  --muted: #718096;
+  --border: #E2E8F0;
+  --bg: #F7F9FC;
+  --white: #FFFFFF;
+  --text: #1A202C;
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Golos Text', sans-serif;
+}
 
-          <nav class="header__nav">
-            <a href="./index.html" class="header__link">Главная</a>
-            <a href="#benefits" class="header__link">Преимущества</a>
-            <a href="#how-it-works" class="header__link">Как это работает</a>
-            <a href="#demo" class="header__link">Заявка</a>
-            <a href="./index.html#contacts" class="header__link">Контакты</a>
-          </nav>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--white);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-          <div class="header__right">
-            <div class="header__phone">
-              <span class="header__phone-label">Отдел продаж</span>
-              <a href="tel:+79137842018" class="header__phone-number">+7 913 784‑20‑18</a>
-            </div>
-            <a href="#demo" class="button button--primary header__cta">Оставить заявку</a>
+/* ── UTILS ── */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.tag {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  background: var(--teal-bg); color: var(--teal);
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal); color: #fff; font-family: var(--font-body);
+  font-size: 15px; font-weight: 600; padding: 14px 28px;
+  border-radius: 10px; border: none; cursor: pointer;
+  text-decoration: none; transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--teal);
+  font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  padding: 13px 26px; border-radius: 10px;
+  border: 2px solid var(--teal); cursor: pointer;
+  text-decoration: none; transition: all .2s;
+}
+.btn-outline:hover { background: var(--teal-bg); }
+.section { padding: 80px 0; }
+.section-alt { padding: 80px 0; background: var(--bg); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700; color: var(--navy);
+  line-height: 1.2; margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px; color: var(--muted);
+  max-width: 580px; line-height: 1.65;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--navy); color: #fff;
+  font-size: 13px; text-align: center; padding: 8px 24px;
+}
+.topbar a { color: var(--teal-light); text-decoration: none; font-weight: 600; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  font-family: var(--font-display); font-size: 18px;
+  font-weight: 700; color: var(--navy); text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; color: var(--slate);
+  text-decoration: none; font-weight: 500;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-cta { font-size: 14px !important; padding: 9px 20px !important; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 60%, #0d4a42 100%);
+  padding: 90px 0 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60L60 0' stroke='rgba(255,255,255,.04)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center; position: relative; z-index: 1;
+}
+.hero-kw {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;
+}
+.hero-kw span {
+  font-size: 11px; font-weight: 500; color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.15); padding: 3px 10px; border-radius: 20px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700; color: #fff;
+  line-height: 1.15; margin-bottom: 20px;
+}
+.hero h1 em { color: var(--teal-light); font-style: normal; }
+.hero-lead { font-size: 17px; color: rgba(255,255,255,.75); margin-bottom: 32px; line-height: 1.65; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-hero {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-light); color: #fff;
+  font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  padding: 15px 30px; border-radius: 10px; border: none;
+  cursor: pointer; text-decoration: none; transition: all .2s;
+}
+.btn-hero:hover { background: #18C4B0; transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1); color: #fff;
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  padding: 14px 28px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.2);
+  cursor: pointer; text-decoration: none; transition: all .2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 32px;
+  font-weight: 700; color: var(--teal-light);
+}
+.hero-stat-label { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.4; }
+
+/* ── DEMO WIDGET ── */
+.widget-demo {
+  background: var(--white); border-radius: 20px;
+  padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,.35);
+  position: relative;
+}
+.widget-demo::before {
+  content: 'Так выглядит виджет на вашем сайте';
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; font-weight: 600; color: var(--teal);
+  background: var(--teal-bg); padding: 4px 14px; border-radius: 20px;
+  white-space: nowrap;
+}
+.widget-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+.widget-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.widget-field label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.widget-field input, .widget-field select {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-family: var(--font-body); font-size: 14px;
+  color: var(--text); outline: none; transition: border-color .2s;
+}
+.widget-field input:focus, .widget-field select:focus { border-color: var(--teal); }
+.widget-rooms { margin-bottom: 16px; }
+.room-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+  margin-bottom: 8px; cursor: pointer; transition: all .2s;
+}
+.room-card:hover, .room-card.active { border-color: var(--teal); background: var(--teal-bg); }
+.room-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+.room-avail { font-size: 11px; color: var(--muted); }
+.room-price { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--teal); }
+.widget-btn {
+  width: 100%; background: var(--teal); color: #fff; border: none;
+  padding: 14px; border-radius: 10px; font-family: var(--font-body);
+  font-size: 15px; font-weight: 600; cursor: pointer; transition: background .2s;
+}
+.widget-btn:hover { background: var(--teal-light); }
+.widget-note { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+/* ── TRUST BAR ── */
+.trust-bar { background: var(--navy); padding: 20px 0; }
+.trust-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.7); font-size: 14px; }
+.trust-icon { font-size: 20px; }
+
+/* ── PAIN ── */
+.pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; }
+.pain-card {
+  padding: 28px; border-radius: 16px; border: 1.5px solid var(--border);
+  position: relative; transition: box-shadow .2s;
+}
+.pain-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+.pain-card.coral { border-color: #FCA5A5; background: var(--coral-bg); }
+.pain-card.amber { border-color: #FCD34D; background: var(--amber-bg); }
+.pain-card.teal { border-color: #6EE7DA; background: var(--teal-bg); }
+.pain-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
+.pain-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.pain-text { font-size: 14px; color: var(--slate); line-height: 1.6; }
+.pain-quote { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 12px; border-left: 3px solid var(--border); padding-left: 10px; }
+.pain-answer {
+  margin-top: 14px; padding: 10px 12px; border-radius: 8px;
+  background: rgba(255,255,255,.7); font-size: 13px; font-weight: 600; color: var(--teal);
+}
+.pain-answer::before { content: '→ '; }
+
+/* ── STEPS ── */
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 48px; position: relative; }
+.steps::before {
+  content: '';
+  position: absolute; top: 36px; left: 10%; right: 10%; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--teal) 0, var(--teal) 8px, transparent 8px, transparent 20px);
+}
+.step { text-align: center; position: relative; }
+.step-num {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--teal); color: #fff;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px; position: relative; z-index: 1;
+  box-shadow: 0 4px 16px rgba(14,138,122,.3);
+}
+.step-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.step-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── FEATURES ── */
+.feature-tabs { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+.ftab {
+  padding: 8px 18px; border-radius: 24px; border: 1.5px solid var(--border);
+  font-size: 13px; font-weight: 600; color: var(--slate);
+  cursor: pointer; transition: all .2s; background: var(--white);
+}
+.ftab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.feature-list { display: flex; flex-direction: column; gap: 16px; }
+.feature-item {
+  display: flex; gap: 16px; padding: 20px; border-radius: 12px;
+  border: 1.5px solid var(--border); transition: all .2s; cursor: pointer;
+}
+.feature-item:hover, .feature-item.active {
+  border-color: var(--teal); background: var(--teal-bg);
+  box-shadow: 0 4px 16px rgba(14,138,122,.1);
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--teal-bg); display: flex; align-items: center;
+  justify-content: center; font-size: 20px; flex-shrink: 0;
+}
+.feature-item.active .feature-icon { background: var(--teal); }
+.feature-item-title { font-weight: 700; color: var(--navy); margin-bottom: 4px; font-size: 14px; }
+.feature-item-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.feature-preview {
+  background: var(--navy); border-radius: 20px; padding: 32px;
+  position: sticky; top: 90px; min-height: 360px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.fp-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--teal-light); margin-bottom: 12px; }
+.fp-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.fp-text { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.65; }
+.fp-badge {
+  display: inline-block; margin-top: 20px; padding: 8px 16px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px; font-size: 13px; color: var(--teal-light); font-weight: 600;
+}
+
+/* ── KEYWORDS ── */
+.kw-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.kw-pill {
+  font-size: 13px; padding: 6px 14px; border-radius: 20px;
+  border: 1px solid var(--border); color: var(--slate);
+  background: var(--white); transition: all .2s; cursor: default;
+}
+.kw-pill:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-bg); }
+.kw-pill.hot { border-color: #FCA5A5; background: var(--coral-bg); color: var(--coral); }
+.kw-pill.warm { border-color: #FCD34D; background: var(--amber-bg); color: #92400E; }
+.kw-pill.niche { border-color: #6EE7DA; background: var(--teal-bg); color: var(--teal); }
+
+/* ── CASES ── */
+.case-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+.case-card {
+  border-radius: 16px; border: 1.5px solid var(--border); overflow: hidden;
+  transition: box-shadow .2s;
+}
+.case-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
+.case-header { padding: 24px 24px 16px; background: var(--teal-bg); }
+.case-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); margin-bottom: 8px; }
+.case-name { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--navy); }
+.case-body { padding: 20px 24px; }
+.case-stat-row { display: flex; gap: 20px; margin-bottom: 16px; }
+.case-stat { text-align: center; }
+.case-num { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--teal); }
+.case-num-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.case-quote { font-size: 13px; color: var(--slate); font-style: italic; line-height: 1.6; border-left: 3px solid var(--teal); padding-left: 12px; }
+
+/* ── OBJECTIONS ── */
+.obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.obj-card { border-radius: 12px; border: 1.5px solid var(--border); overflow: hidden; }
+.obj-q {
+  padding: 16px 20px; background: var(--coral-bg);
+  font-weight: 600; font-size: 14px; color: var(--coral);
+  border-bottom: 1px solid #FCA5A5;
+}
+.obj-q::before { content: '❓ '; }
+.obj-a { padding: 16px 20px; font-size: 14px; color: var(--slate); line-height: 1.6; }
+.obj-a strong { color: var(--teal); font-weight: 600; }
+
+/* ── FAQ ── */
+.faq { margin-top: 48px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; cursor: pointer; }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600; font-size: 15px; color: var(--navy);
+}
+.faq-arrow { font-size: 18px; color: var(--teal); transition: transform .3s; flex-shrink: 0; }
+.faq-a {
+  font-size: 14px; color: var(--slate); line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height .35s, padding .35s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-top: 12px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+/* ── PRICING ── */
+.pricing-card {
+  background: linear-gradient(135deg, var(--navy), #1a4a3a);
+  border-radius: 24px; padding: 48px; color: #fff;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 40px; flex-wrap: wrap;
+}
+.pricing-left { flex: 1; }
+.pricing-title { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.pricing-text { font-size: 16px; color: rgba(255,255,255,.75); margin-bottom: 20px; line-height: 1.6; }
+.pricing-features { display: flex; flex-direction: column; gap: 8px; }
+.pricing-feat { font-size: 14px; color: rgba(255,255,255,.8); }
+.pricing-feat::before { content: '✓ '; color: var(--teal-light); font-weight: 700; }
+.pricing-right { text-align: center; flex-shrink: 0; }
+.pricing-from { font-size: 13px; color: rgba(255,255,255,.6); margin-bottom: 4px; }
+.pricing-price { font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--teal-light); }
+.pricing-period { font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: 20px; }
+
+/* ── CTA ── */
+.cta-section { background: var(--teal); padding: 80px 0; }
+.cta-inner { text-align: center; }
+.cta-title { font-family: var(--font-display); font-size: clamp(24px, 4vw, 40px); font-weight: 700; color: #fff; margin-bottom: 16px; }
+.cta-sub { font-size: 17px; color: rgba(255,255,255,.85); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-form { display: flex; gap: 12px; justify-content: center; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+.cta-input {
+  flex: 1; min-width: 200px; padding: 14px 18px;
+  border: none; border-radius: 10px; font-family: var(--font-body); font-size: 15px; outline: none;
+}
+.cta-btn {
+  background: var(--navy); color: #fff; border: none;
+  padding: 14px 28px; border-radius: 10px; font-family: var(--font-body);
+  font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s; white-space: nowrap;
+}
+.cta-btn:hover { background: #0A1B33; }
+.cta-guarantee { font-size: 13px; color: rgba(255,255,255,.7); margin-top: 16px; }
+
+/* ── FOOTER ── */
+footer { background: var(--navy); color: rgba(255,255,255,.6); padding: 48px 0 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-logo { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.footer-logo span { color: var(--teal-light); }
+.footer-desc { font-size: 14px; line-height: 1.65; max-width: 260px; }
+.footer-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #fff; margin-bottom: 16px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 14px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--teal-light); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; flex-wrap: wrap; gap: 12px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.animate { animation: fadeUp .6s ease both; }
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.delay-4 { animation-delay: .4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-grid, .grid-2, .feature-grid, .footer-grid { grid-template-columns: 1fr; }
+  .grid-3, .pain-grid, .case-grid, .obj-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps::before { display: none; }
+  .pricing-card { flex-direction: column; text-align: center; }
+  .trust-inner { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .grid-3, .pain-grid, .case-grid, .obj-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  🚀 Запустить модуль бронирования за 1 день — <a href="#demo">Получить демо бесплатно →</a>
+</div>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">Hotel <span>KI</span></a>
+    <ul class="nav-links">
+      <li><a href="#how">Как работает</a></li>
+      <li><a href="#features">Возможности</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#pricing">Стоимость</a></li>
+    </ul>
+    <a href="#demo" class="btn-primary nav-cta">Попробовать бесплатно</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="animate">
+        <div class="hero-kw">
+          <span>модуль бронирования для сайта</span>
+          <span>виджет бронирования</span>
+          <span>онлайн бронирование для гостиницы</span>
+        </div>
+        <h1>Модуль бронирования для сайта турбазы и гостевого дома — <em>без комиссий ОТА</em></h1>
+        <p class="hero-lead">Гости бронируют и оплачивают напрямую на вашем сайте. Никакого Booking, никаких 15–20% комиссии. Устанавливается за 1 день без программиста.</p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn-hero">Получить демо доступ →</a>
+          <a href="#how" class="btn-ghost">Как работает</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">0%</div>
+            <div class="hero-stat-label">Комиссия<br>за бронирования</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">24/7</div>
+            <div class="hero-stat-label">Приём броней<br>без вашего участия</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">1 день</div>
+            <div class="hero-stat-label">До запуска<br>виджета</div>
           </div>
         </div>
-      </header>
-
-      <main>
-        <!-- Hero -->
-        <section class="hero hero--full" id="top">
-          <div class="container hero__inner">
-            <div class="hero__content">
-              <div class="hero__label">Лендинг для вашей гостиницы</div>
-              <h1 class="hero__title">
-                Создадим сайт для вашей гостиницы
-                <span class="hero__title-accent">и подключим систему управления бронированиями</span>
-              </h1>
-              <p class="hero__subtitle">
-                Если у вашей гостиницы нет сайта — это не проблема.
-                С системой Hotel-KI вы получаете не только удобную PMS для управления номерным фондом,
-                но и готовый брендовый сайт гостиницы, через который гости смогут бронировать номера напрямую.
-              </p>
-              <p class="hero__subtitle hero__subtitle--accent">
-                Без разработки, без долгих согласований и без больших расходов.
-              </p>
-
-              <div class="hero__actions">
-                <a href="#demo" class="button button--primary">Оставить заявку</a>
-                <a href="#benefits" class="button button--ghost">Узнать подробнее</a>
-              </div>
-
-              <div class="hero-benefits">
-                <h3 class="hero-benefits__title">Что вы получаете:</h3>
-                <ul class="hero-benefits__list">
-                  <li>готовый сайт гостиницы</li>
-                  <li>онлайн-бронирование номеров</li>
-                  <li>автоматическое отображение свободных дат</li>
-                  <li>интеграцию с системой управления отелем</li>
-                  <li>удобную шахматку бронирований</li>
-                  <li>возможность принимать прямые брони без посредников</li>
-                </ul>
-                <div class="hero-benefits__badge">Экономия на разработке сайта — от 100 000 ₽</div>
-              </div>
+      </div>
+      <div class="animate delay-2">
+        <div class="widget-demo">
+          <div class="widget-title">🏕️ Турбаза «Кедровый берег»</div>
+          <div class="widget-row">
+            <div class="widget-field">
+              <label>Заезд</label>
+              <input type="date" value="2026-07-10">
+            </div>
+            <div class="widget-field">
+              <label>Выезд</label>
+              <input type="date" value="2026-07-14">
             </div>
           </div>
-        </section>
-
-        <!-- Почему нужен сайт -->
-        <section class="section" id="why-site">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Почему гостинице нужен собственный сайт</h2>
-              <p class="section__subtitle">
-                Многие небольшие гостиницы и базы отдыха работают только через: Avito, Booking-сервисы,
-                социальные сети, мессенджеры. Но у такого подхода есть серьёзные минусы:
-              </p>
+          <div class="widget-row">
+            <div class="widget-field">
+              <label>Гостей</label>
+              <select><option>2 гостя</option><option>3 гостя</option><option>4 гостя</option></select>
             </div>
-            <div class="landing-grid landing-grid--2">
-              <div class="card card--negative">
-                <h3 class="card__title">Минусы работы без сайта</h3>
-                <ul class="card__list">
-                  <li>высокая комиссия агрегаторов</li>
-                  <li>потеря прямых клиентов</li>
-                  <li>путаница с бронями</li>
-                  <li>сложность управления загрузкой номеров</li>
-                </ul>
-              </div>
-              <div class="card card--positive">
-                <h3 class="card__title">Собственный сайт позволяет:</h3>
-                <ul class="card__list">
-                  <li>принимать прямые бронирования без комиссии</li>
-                  <li>управлять загрузкой номеров</li>
-                  <li>формировать бренд гостиницы</li>
-                  <li>увеличивать прибыль</li>
-                </ul>
-              </div>
+            <div class="widget-field">
+              <label>Тип объекта</label>
+              <select><option>Любой</option><option>Домик</option><option>Номер</option></select>
             </div>
           </div>
-        </section>
-
-        <!-- Решение от Hotel-KI -->
-        <section class="section section--soft" id="solution">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Решение от Hotel-KI</h2>
-              <p class="section__subtitle">
-                Мы сделали удобное решение для небольших гостиниц и баз отдыха.
-                Вместе с системой управления отелем вы получаете готовый сайт, который уже интегрирован с PMS.
-              </p>
+          <div class="widget-rooms">
+            <div class="room-card active">
+              <div><div class="room-name">Домик «Сосновый»</div><div class="room-avail">✓ Свободно на ваши даты</div></div>
+              <div class="room-price">4 800 ₽/сут</div>
             </div>
-            <div class="solution-flow">
-              <p class="solution-flow__text">
-                <strong>Гость выбирает номер на сайте</strong> →
-                <strong>система автоматически проверяет доступность</strong> →
-                <strong>бронь сразу попадает в шахматку администратора.</strong>
-              </p>
-              <p class="solution-flow__note">Без ручной работы.</p>
+            <div class="room-card">
+              <div><div class="room-name">Домик «Берёзовый»</div><div class="room-avail">✓ Свободно на ваши даты</div></div>
+              <div class="room-price">5 400 ₽/сут</div>
+            </div>
+            <div class="room-card">
+              <div><div class="room-name">Номер в корпусе №1</div><div class="room-avail">✓ 3 номера свободно</div></div>
+              <div class="room-price">2 900 ₽/сут</div>
             </div>
           </div>
-        </section>
-
-        <!-- Что входит в сайт -->
-        <section class="section" id="what-included">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Что входит в сайт гостиницы</h2>
-            </div>
-
-            <div class="landing-cards">
-              <article class="card card--icon">
-                <h3 class="card__title">Структура сайта</h3>
-                <p class="card__text">Полноценный сайт гостиницы со всеми необходимыми разделами:</p>
-                <ul class="card__list card__list--compact">
-                  <li>главная страница</li>
-                  <li>описание гостиницы</li>
-                  <li>номера и цены</li>
-                  <li>фотографии номеров</li>
-                  <li>информация об услугах</li>
-                  <li>карта и контакты</li>
-                  <li>форма онлайн-бронирования</li>
-                </ul>
-              </article>
-
-              <article class="card card--icon">
-                <h3 class="card__title">Онлайн бронирование</h3>
-                <p class="card__text">Гости смогут:</p>
-                <ul class="card__list card__list--compact">
-                  <li>выбрать даты проживания</li>
-                  <li>посмотреть свободные номера</li>
-                  <li>забронировать номер онлайн</li>
-                </ul>
-                <p class="card__text">Все бронирования автоматически появляются в системе управления отелем.</p>
-              </article>
-
-              <article class="card card--icon">
-                <h3 class="card__title">Интеграция с PMS</h3>
-                <p class="card__text">Сайт полностью связан с системой Hotel-KI:</p>
-                <ul class="card__list card__list--compact">
-                  <li>автоматически обновлять доступность номеров</li>
-                  <li>избегать овербукинга</li>
-                  <li>видеть загрузку отеля в шахматке</li>
-                  <li>управлять бронями из одного интерфейса</li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!-- Для каких объектов -->
-        <section class="section section--soft" id="for-whom">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Для каких объектов подходит решение</h2>
-              <p class="section__subtitle">
-                Сайт + PMS идеально подходит для:
-              </p>
-            </div>
-            <div class="tags">
-              <span class="tag">небольшие гостиницы</span>
-              <span class="tag">базы отдыха</span>
-              <span class="tag">гостевые дома</span>
-              <span class="tag">мини-отели</span>
-              <span class="tag">апарт-отели</span>
-              <span class="tag">эко-отели</span>
-              <span class="tag">глэмпинги</span>
-            </div>
-            <p class="section__subtitle" style="margin-top: 20px;">
-              Особенно если у вас: до 50 номеров, нет собственного сайта, бронирования приходят из разных источников.
-            </p>
-          </div>
-        </section>
-
-        <!-- Почему выгоднее -->
-        <section class="section" id="benefits">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Почему это выгоднее обычной разработки сайта</h2>
-              <p class="section__subtitle">
-                Разработка сайта для гостиницы обычно стоит от 100 000 до 300 000 ₽ — и при этом сайт не связан
-                с системой управления отелем. В решении Hotel-KI вы получаете всё в одном продукте:
-              </p>
-            </div>
-            <div class="benefits-pack">
-              <span class="benefits-pack__item">сайт гостиницы</span>
-              <span class="benefits-pack__item">систему управления номерным фондом</span>
-              <span class="benefits-pack__item">шахматку бронирований</span>
-              <span class="benefits-pack__item">онлайн бронирование</span>
-            </div>
-
-            <div class="section__head" style="margin-top: 40px;">
-              <h2 class="section__title">Основные преимущества</h2>
-            </div>
-            <div class="cards cards--grid-4">
-              <article class="card">
-                <h3 class="card__title">Быстрый запуск</h3>
-                <p class="card__text">Сайт можно запустить за несколько дней.</p>
-              </article>
-              <article class="card">
-                <h3 class="card__title">Экономия бюджета</h3>
-                <p class="card__text">Не нужно заказывать отдельную разработку сайта.</p>
-              </article>
-              <article class="card">
-                <h3 class="card__title">Прямые бронирования</h3>
-                <p class="card__text">Гости бронируют номера напрямую через ваш сайт.</p>
-              </article>
-              <article class="card">
-                <h3 class="card__title">Управление номерным фондом</h3>
-                <p class="card__text">Все бронирования автоматически отображаются в шахматке.</p>
-              </article>
-              <article class="card card--wide">
-                <h3 class="card__title">Простота работы</h3>
-                <p class="card__text">Администратор работает в одной системе.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!-- Как это работает -->
-        <section class="section section--soft" id="how-it-works">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Как это работает</h2>
-            </div>
-            <ol class="steps">
-              <li class="step">Мы подключаем систему Hotel-KI</li>
-              <li class="step">Создаём сайт вашей гостиницы</li>
-              <li class="step">Добавляем номера, фотографии и цены</li>
-              <li class="step">Подключаем онлайн-бронирование</li>
-              <li class="step">Вы начинаете принимать прямые брони</li>
-            </ol>
-          </div>
-        </section>
-
-        <!-- Для кого -->
-        <section class="section" id="target">
-          <div class="container">
-            <div class="section__head">
-              <h2 class="section__title">Для кого мы создавали это решение</h2>
-              <p class="section__subtitle">
-                Мы разрабатывали систему специально для владельцев небольших гостиниц, которые:
-              </p>
-            </div>
-            <ul class="target-list">
-              <li>не хотят тратить большие бюджеты на разработку сайта</li>
-              <li>хотят управлять бронированиями в одной системе</li>
-              <li>хотят получать больше прямых клиентов</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="section section--highlight" id="demo">
-          <div class="container demo">
-            <div class="demo__text">
-              <h2 class="section__title">Начните принимать бронирования через свой сайт</h2>
-              <p class="section__subtitle">
-                Подключите Hotel-KI и получите: сайт гостиницы, систему управления номерным фондом,
-                удобную шахматку бронирований, онлайн бронирование.
-              </p>
-              <p class="section__subtitle">Оставьте заявку — мы покажем, как работает система.</p>
-            </div>
-            <form class="demo__form">
-              <div class="form-grid">
-                <label class="field">
-                  <span class="field__label">Имя</span>
-                  <input class="field__input" type="text" name="name" placeholder="Как к вам обращаться?" />
-                </label>
-                <label class="field">
-                  <span class="field__label">Телефон*</span>
-                  <input class="field__input" type="tel" name="phone" placeholder="+7 999 000‑00‑00" required />
-                </label>
-                <label class="field">
-                  <span class="field__label">E‑mail*</span>
-                  <input class="field__input" type="email" name="email" placeholder="email@example.com" required />
-                </label>
-                <label class="field">
-                  <span class="field__label">Название отеля / объекта</span>
-                  <input class="field__input" type="text" name="hotel" placeholder="Название и город" />
-                </label>
-              </div>
-              <button class="button button--primary button--wide" type="submit">
-                Оставить заявку
-              </button>
-              <p class="demo__note">
-                Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и условиями оферты.
-              </p>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      <footer class="footer" id="contacts">
-        <div class="container footer__inner">
-          <div class="footer__col">
-            <div class="footer__logo">
-              <img
-                src="./assets/img/logo_hotelki.svg"
-                alt="Hotel KI"
-                class="footer__logo-img"
-              />
-              <span class="footer__logo-text">Hotel KI — система управления номерным фондом</span>
-            </div>
-            <p class="footer__copy">
-              © <span id="js-year"></span> Hotel KI. Система управления номерным фондом для отелей и апартаментов.
-            </p>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__title">Контакты отдела продаж</h3>
-            <div class="footer__contacts">
-              <a href="tel:+79139253269" class="footer__link">+7 913 925‑32‑69</a>
-              <a href="tel:+79137842018" class="footer__link">+7 913 784‑20‑18</a>
-              <a href="mailto:apapushina@idgorod.ru" class="footer__link">apapushina@idgorod.ru</a>
-            </div>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__title">Юридическая информация</h3>
-            <p class="footer__text">
-              ООО «Город Диджитал», г. Новосибирск<br />
-              ИНН 5407460307, ОГРН 1105476101873
-            </p>
-            <div class="footer__links">
-              <a href="#" class="footer__link">Публичная оферта</a>
-              <a href="#" class="footer__link">Политика конфиденциальности</a>
-            </div>
-          </div>
+          <button class="widget-btn" onclick="this.textContent='✓ Бронь создана! Подтверждение на email'">Забронировать выбранное</button>
+          <p class="widget-note">🔒 Безопасная оплата · Мгновенное подтверждение</p>
         </div>
-      </footer>
+      </div>
     </div>
+  </div>
+</section>
 
-    <script src="./js/main.js"></script>
-  </body>
+<div class="trust-bar">
+  <div class="container trust-inner">
+    <div class="trust-item"><span class="trust-icon">🏕️</span>Турбазы</div>
+    <div class="trust-item"><span class="trust-icon">🏡</span>Гостевые дома</div>
+    <div class="trust-item"><span class="trust-icon">🌿</span>Глэмпинги</div>
+    <div class="trust-item"><span class="trust-icon">🏘️</span>Мини-отели</div>
+    <div class="trust-item"><span class="trust-icon">🏠</span>Апартаменты</div>
+    <div class="trust-item"><span class="trust-icon">🛖</span>Коттеджные посёлки</div>
+  </div>
+</div>
+
+<section class="section" id="pain">
+  <div class="container">
+    <div class="tag">Знакомо?</div>
+    <h2 class="section-title" style="margin-top:12px">Почему владельцы турбаз теряют деньги прямо сейчас</h2>
+    <p class="section-sub">Три главных боли, которые решает модуль бронирования Hotel KI</p>
+    <div class="pain-grid">
+      <div class="pain-card coral">
+        <span class="pain-emoji">😤</span>
+        <div class="pain-title">Двойные брони и скандалы</div>
+        <p class="pain-text">Брони принимаете в WhatsApp, Avito и по телефону. Один раз пропустили — два гостя приехали на один домик.</p>
+        <p class="pain-quote">«Пришлось возвращать деньги и искать им жильё. Репутация в минус.»</p>
+        <div class="pain-answer">Hotel KI синхронизирует все брони автоматически — двойное бронирование невозможно физически</div>
+      </div>
+      <div class="pain-card amber">
+        <span class="pain-emoji">💸</span>
+        <div class="pain-title">OTA забирают 15–25% с каждой брони</div>
+        <p class="pain-text">Ostrovok, Суточно.ру, Авито берут комиссию. За сезон это десятки тысяч рублей чужими руками.</p>
+        <p class="pain-quote">«За лето отдал агрегаторам больше 80 тысяч. А своего сайта с бронированием нет.»</p>
+        <div class="pain-answer">Прямые брони через ваш сайт — 0% комиссии. Лендинг с виджетом идёт в комплекте</div>
+      </div>
+      <div class="pain-card teal">
+        <span class="pain-emoji">📱</span>
+        <div class="pain-title">Постоянно на телефоне 24/7</div>
+        <p class="pain-text">Не можете отдохнуть — каждый час кто-то пишет «а есть ли места на эти даты?». Приходится отвечать вручную.</p>
+        <p class="pain-quote">«В отпуск не езжу уже два года. Постоянно жду звонков.»</p>
+        <div class="pain-answer">Гости сами проверяют наличие мест и оплачивают онлайн — вы только получаете уведомление</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="how">
+  <div class="container">
+    <div class="tag">Простой запуск</div>
+    <h2 class="section-title" style="margin-top:12px">Как работает модуль бронирования</h2>
+    <p class="section-sub">От установки до первой прямой брони — за 1 рабочий день</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Настраиваем объекты</div>
+        <p class="step-text">Добавляем ваши домики, номера или корпуса. Загружаем фото, описания, цены и правила заезда.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Устанавливаем виджет</div>
+        <p class="step-text">Два строки кода — и виджет появляется на вашем сайте. Или используем готовый лендинг Hotel KI.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Гости бронируют</div>
+        <p class="step-text">Посетитель выбирает даты, смотрит свободные номера, оплачивает картой — всё без звонков и переписки.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Бронь в вашей шахматке</div>
+        <p class="step-text">Данные автоматически падают в PMS. Вы видите все брони в одном окне, без ручного переноса.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="tag">Функционал</div>
+    <h2 class="section-title" style="margin-top:12px">Что умеет модуль бронирования Hotel KI</h2>
+    <div class="feature-tabs">
+      <button class="ftab active" onclick="setFeature(this,'direct')">Прямые продажи</button>
+      <button class="ftab" onclick="setFeature(this,'calendar')">Шахматка и календарь</button>
+      <button class="ftab" onclick="setFeature(this,'complex')">Сложные объекты</button>
+      <button class="ftab" onclick="setFeature(this,'payments')">Оплата и документы</button>
+      <button class="ftab" onclick="setFeature(this,'analytics')">Аналитика</button>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-list" id="feature-list">
+        <div class="feature-item active" onclick="selectFeature(this,'Виджет на ваш сайт','Форма поиска и бронирования встраивается на любой сайт или конструктор (Tilda, WIX, Webflow, Craftum). Работает на мобильных. Гость видит актуальные цены, свободные даты и мгновенно бронирует.','Установка за 1 день без программиста')">
+          <div class="feature-icon">🔌</div>
+          <div><div class="feature-item-title">Виджет на ваш сайт</div><div class="feature-item-text">Встраивается в 2 строки кода на любой конструктор</div></div>
+        </div>
+        <div class="feature-item" onclick="selectFeature(this,'Лендинг в комплекте','Нет сайта — не проблема. Hotel KI создаёт готовую страницу с описанием объекта, фотографиями, картой и встроенным модулем бронирования. Запускается за 3 дня без программистов.','Включено в базовый тариф бесплатно')">
+          <div class="feature-icon">🌐</div>
+          <div><div class="feature-item-title">Готовый лендинг</div><div class="feature-item-text">Страница отеля с бронированием — уже включена</div></div>
+        </div>
+        <div class="feature-item" onclick="selectFeature(this,'Онлайн-оплата','Гость оплачивает картой прямо в форме бронирования. Деньги приходят на ваш счёт — без посредников и задержек. Поддержка всех российских платёжных систем.','Без дополнительных платёжных агентов')">
+          <div class="feature-icon">💳</div>
+          <div><div class="feature-item-title">Онлайн-оплата</div><div class="feature-item-text">Гость платит картой, деньги идут вам напрямую</div></div>
+        </div>
+        <div class="feature-item" onclick="selectFeature(this,'Автоподтверждение','После оплаты гость мгновенно получает письмо с подтверждением брони. Вам не нужно ничего отправлять вручную. Вы получаете уведомление — и всё.','Экономит 2–3 часа в день на переписку')">
+          <div class="feature-icon">✉️</div>
+          <div><div class="feature-item-title">Автоподтверждение</div><div class="feature-item-text">Гость получает письмо сразу — вы не участвуете</div></div>
+        </div>
+      </div>
+      <div class="feature-preview" id="feature-preview">
+        <div class="fp-label">Модуль прямых продаж</div>
+        <div class="fp-title" id="fp-title">Виджет на ваш сайт</div>
+        <div class="fp-text" id="fp-text">Форма поиска и бронирования встраивается на любой сайт или конструктор (Tilda, WIX, Webflow, Craftum). Работает на мобильных. Гость видит актуальные цены, свободные даты и мгновенно бронирует.</div>
+        <div class="fp-badge" id="fp-badge">Установка за 1 день без программиста</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="seo">
+  <div class="container">
+    <div class="tag">Для кого подходит</div>
+    <h2 class="section-title" style="margin-top:12px">Модуль бронирования — для любого типа объекта</h2>
+    <p class="section-sub">Hotel KI работает для всех форматов малого гостиничного бизнеса</p>
+    <div class="kw-cloud">
+      <span class="kw-pill hot">турбаза</span><span class="kw-pill hot">гостевой дом</span><span class="kw-pill hot">база отдыха</span><span class="kw-pill hot">мини-отель</span>
+      <span class="kw-pill warm">глэмпинг</span><span class="kw-pill warm">коттеджный посёлок</span><span class="kw-pill warm">апартаменты посуточно</span>
+      <span class="kw-pill niche">модуль бронирования для турбазы</span><span class="kw-pill niche">онлайн бронирование для гостиницы</span>
+      <span class="kw-pill niche">виджет бронирования без комиссии</span><span class="kw-pill niche">форма бронирования номеров на сайт</span>
+      <span class="kw-pill">система бронирования для гостевого дома</span><span class="kw-pill">кнопка забронировать на сайт отеля</span>
+      <span class="kw-pill">booking engine для малого отеля</span><span class="kw-pill">прямые продажи без Ostrovok</span>
+      <span class="kw-pill">увеличить прямые брони отеля</span><span class="kw-pill">убрать комиссию агрегатора</span>
+      <span class="kw-pill">принимать оплату на сайте гостиницы</span><span class="kw-pill">шахматка бронирования онлайн</span>
+      <span class="kw-pill">автоматическая система бронирования</span>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--muted)"><span style="color:var(--coral);font-weight:600">●</span> Транзакционные &nbsp;<span style="color:var(--amber);font-weight:600">●</span> Нишевые &nbsp;<span style="color:var(--teal);font-weight:600">●</span> Функциональные &nbsp;<span style="color:var(--border);font-weight:600">●</span> Информационные</p>
+  </div>
+</section>
+
+<section class="section" id="cases">
+  <div class="container">
+    <div class="tag">Результаты клиентов</div>
+    <h2 class="section-title" style="margin-top:12px">Что происходит после подключения</h2>
+    <p class="section-sub">Реальные объекты, реальные цифры</p>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-header"><div class="case-type">Турбаза · Алтайский край</div><div class="case-name">«Кедровый бор», 12 домиков</div></div>
+        <div class="case-body">
+          <div class="case-stat-row">
+            <div class="case-stat"><div class="case-num">+38%</div><div class="case-num-label">Прямых<br>броней</div></div>
+            <div class="case-stat"><div class="case-num">−65К</div><div class="case-num-label">Комиссий<br>OTA за сезон</div></div>
+            <div class="case-stat"><div class="case-num">0</div><div class="case-num-label">Двойных<br>броней</div></div>
+          </div>
+          <p class="case-quote">«Раньше брал трубку каждый вечер. Теперь просыпаюсь — в шахматке уже 3 новые брони.»</p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><div class="case-type">Гостевой дом · Краснодарский край</div><div class="case-name">«Уют у моря», 8 номеров</div></div>
+        <div class="case-body">
+          <div class="case-stat-row">
+            <div class="case-stat"><div class="case-num">47%</div><div class="case-num-label">Доля прямых<br>продаж</div></div>
+            <div class="case-stat"><div class="case-num">3 дня</div><div class="case-num-label">До первой<br>прямой брони</div></div>
+            <div class="case-stat"><div class="case-num">+22%</div><div class="case-num-label">Выручка<br>за сезон</div></div>
+          </div>
+          <p class="case-quote">«Сайта не было вообще. Hotel KI дали готовый лендинг — через 3 дня пошли первые прямые брони.»</p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><div class="case-type">Глэмпинг · Карелия</div><div class="case-name">«Лесной дом», 6 сафари-тентов</div></div>
+        <div class="case-body">
+          <div class="case-stat-row">
+            <div class="case-stat"><div class="case-num">98%</div><div class="case-num-label">Загрузка<br>в сезон</div></div>
+            <div class="case-stat"><div class="case-num">−18%</div><div class="case-num-label">Зависимость<br>от OTA</div></div>
+            <div class="case-stat"><div class="case-num">4</div><div class="case-num-label">Минуты на<br>1 бронирование</div></div>
+          </div>
+          <p class="case-quote">«Разные типы объектов в одной шахматке — тенты, домик и баня. Нигде больше такого не нашёл.»</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="tag">Вопросы и сомнения</div>
+    <h2 class="section-title" style="margin-top:12px">Частые возражения — честные ответы</h2>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-q">Это сложно — у нас нет IT-специалиста</div><div class="obj-a"><strong>Наша команда всё настраивает за вас.</strong> Базовый запуск — 1–3 дня. Обучаем администратора, помогаем с переносом данных.</div></div>
+      <div class="obj-card"><div class="obj-q">У меня всего 5–8 домиков, это не нужно</div><div class="obj-a"><strong>Именно для маленьких объектов и создан.</strong> Один конфликт из-за двойной брони — и репутация испорчена.</div></div>
+      <div class="obj-card"><div class="obj-q">У меня нет сайта — куда ставить виджет?</div><div class="obj-a"><strong>Готовый лендинг с бронированием уже включён в тариф.</strong> Запускается за 3 дня, без разработчиков.</div></div>
+      <div class="obj-card"><div class="obj-q">Я уже размещён на Ostrovok и Авито</div><div class="obj-a"><strong>Hotel KI не заменяет OTA — он работает параллельно.</strong> Со временем доля прямых продаж растёт.</div></div>
+      <div class="obj-card"><div class="obj-q">Вдруг гости не доверяют платить на сайте?</div><div class="obj-a"><strong>Доля онлайн-оплат растёт каждый год.</strong> Гости уже привыкли платить картой на агрегаторах — ваш виджет работает точно так же.</div></div>
+      <div class="obj-card"><div class="obj-q">Дорого — нет денег на подписку</div><div class="obj-a"><strong>Считайте иначе.</strong> 20 броней × 5 000 ₽ × 20% комиссии OTA = 20 000 ₽ потерь. Подписка окупается с 1–2 спасённых комиссий.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container" style="max-width:760px">
+    <div class="tag">FAQ</div>
+    <h2 class="section-title" style="margin-top:12px">Часто задаваемые вопросы</h2>
+    <div class="faq">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Как установить модуль бронирования на мой сайт? <span class="faq-arrow">▾</span></div><div class="faq-a">Вы получаете небольшой код (iframe или JS-скрипт), который вставляется в любое место сайта — в конструктор Tilda, WIX, Webflow, WordPress или на кастомный HTML. Наша команда помогает с установкой бесплатно.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Сколько времени занимает запуск? <span class="faq-arrow">▾</span></div><div class="faq-a">Базовый запуск — 1–3 рабочих дня. За это время мы добавляем ваши объекты, настраиваем тарифы и сезонные цены, устанавливаем виджет и обучаем администратора.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Как гости платят? Деньги идут сразу мне? <span class="faq-arrow">▾</span></div><div class="faq-a">Гости оплачивают картой прямо в форме бронирования. Деньги поступают на ваш расчётный счёт — без посредников. Поддержка Сбер Pay, Т-Pay и других российских систем.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Что будет, если у меня несколько домиков и корпусов? <span class="faq-arrow">▾</span></div><div class="faq-a">Hotel KI специально создан для вложенных структур. Корпус → номера, или отдельные домики — всё в единой шахматке и доступно для бронирования через виджет.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Могут ли гости отменить или изменить бронь? <span class="faq-arrow">▾</span></div><div class="faq-a">Да. Вы настраиваете правила отмены: бесплатная за N дней, штраф при отмене, невозвратный тариф. При отмене система автоматически возвращает деньги по вашим правилам.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Есть ли мобильная версия виджета? <span class="faq-arrow">▾</span></div><div class="faq-a">Да, виджет полностью адаптивный — корректно работает на смартфонах и планшетах.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Нужно ли устанавливать программу или покупать сервер? <span class="faq-arrow">▾</span></div><div class="faq-a">Нет. Hotel KI — полностью облачный сервис. Достаточно браузера и интернета. Данные хранятся на серверах в России.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Как система защищает от двойных броней? <span class="faq-arrow">▾</span></div><div class="faq-a">Виджет показывает только реально свободные объекты. Как только гость завершает бронирование — даты мгновенно блокируются для всех остальных.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="pricing">
+  <div class="container">
+    <div class="pricing-card">
+      <div class="pricing-left">
+        <div class="pricing-title">Стоимость модуля бронирования</div>
+        <p class="pricing-text">Модуль бронирования входит в базовую подписку Hotel KI вместе с PMS-системой, шахматкой и готовым лендингом.</p>
+        <div class="pricing-features">
+          <div class="pricing-feat">Модуль поиска и бронирования на сайт</div>
+          <div class="pricing-feat">Готовый лендинг для вашего объекта</div>
+          <div class="pricing-feat">Шахматка бронирований в реальном времени</div>
+          <div class="pricing-feat">Онлайн-оплата картой</div>
+          <div class="pricing-feat">Аналитика и управленческие отчёты</div>
+          <div class="pricing-feat">Поддержка при запуске — включена</div>
+        </div>
+      </div>
+      <div class="pricing-right">
+        <div class="pricing-from">от</div>
+        <div class="pricing-price">990 ₽</div>
+        <div class="pricing-period">в месяц</div>
+        <a href="#demo" class="btn-hero" style="width:100%;justify-content:center">Узнать точную цену →</a>
+        <p style="font-size:12px;color:rgba(255,255,255,.5);margin-top:10px">Цена зависит от кол-ва номеров</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="demo">
+  <div class="container cta-inner">
+    <h2 class="cta-title">Попробуйте модуль бронирования бесплатно</h2>
+    <p class="cta-sub">Оставьте заявку — настроим систему на примере вашего объекта и покажем, как будет работать виджет именно у вас</p>
+    <form class="cta-form" onsubmit="submitForm(event)">
+      <input class="cta-input" type="tel" placeholder="Ваш телефон" id="phone-input">
+      <button type="submit" class="cta-btn" id="cta-btn">Получить демо →</button>
+    </form>
+    <p class="cta-guarantee">🔒 Без автоматических списаний · Демо бесплатно · Отвечаем в течение 2 часов</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Hotel <span>KI</span></div>
+        <p class="footer-desc">Облачная PMS-система и модуль бронирования для турбаз, гостевых домов, мини-отелей и глэмпингов. Создана в Новосибирске, работает по всей России.</p>
+        <p style="font-size:13px;margin-top:16px">📞 <a href="tel:+79137842018" style="color:rgba(255,255,255,.6);text-decoration:none">+7 913 784-20-18</a></p>
+      </div>
+      <div>
+        <div class="footer-col-title">Продукт</div>
+        <ul class="footer-links">
+          <li><a href="#">Модуль бронирования</a></li>
+          <li><a href="#">PMS для турбазы</a></li>
+          <li><a href="#">PMS для гостевого дома</a></li>
+          <li><a href="#">PMS для глэмпинга</a></li>
+          <li><a href="#">Готовый лендинг</a></li>
+          <li><a href="#">Цены</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Компания</div>
+        <ul class="footer-links">
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Кейсы</a></li>
+          <li><a href="#">Блог</a></li>
+          <li><a href="#">Публичная оферта</a></li>
+          <li><a href="#">Политика конфиденциальности</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hotel KI · ООО «Город Диджитал» · ИНН 5407460307</span>
+      <span>Инфраструктура в России 🇷🇺</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setFeature(btn, type) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function selectFeature(el, title, text, badge) {
+  document.querySelectorAll('.feature-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fp-title').textContent = title;
+  document.getElementById('fp-text').textContent = text;
+  document.getElementById('fp-badge').textContent = badge;
+}
+function toggleFaq(item) {
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cta-btn');
+  btn.textContent = '✓ Заявка отправлена! Перезвоним скоро';
+  btn.style.background = '#0E8A7A';
+  btn.disabled = true;
+}
+document.querySelectorAll('.room-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.room-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pain-card, .step, .case-card, .obj-card, .feature-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+document.querySelector('.faq-item').classList.add('open');
+</script>
+</body>
 </html>
